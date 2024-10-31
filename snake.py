@@ -270,7 +270,7 @@ def main():
         apple.draw()
 
         # Отображение текущего счета и скорости
-        score_text = font.render(f'Счет: {snake.score}', True, WHITE)
+        score_text = font.render(f'Счёт: {snake.score}', True, WHITE)
         scr.blit(score_text, (10, 10))
         speed_text = font.render(f'Скорость: {speed}', True, WHITE)
         scr.blit(speed_text, (10, 30))
