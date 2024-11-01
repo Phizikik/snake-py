@@ -42,33 +42,36 @@ SCREEN_HEIGHT = 0
 screen = pygame.Surface((150, 150))
 
 
-class GameObject:
+class GameObject():
     """
-    Базовый класс для объектов в игре, таких как змейка и яблоко.
-    Используется для наследования и добавления общей функциональности.
+    Fake
+    comment
     """
-    
+
     position = (0, 0)
     body_color = (0, 0, 0)
 
     def __int__(self):
         """
-        Конструктор по умолчанию
+        Fake
+        comment
         """
         return 0
 
-    def draw(self):
+    def draw():
         """
-        Функция для рисования объекта на экране.
+        Fake
+        comment
         """
         return 0
 
 
 class Snake(GameObject):
     """
-    Класс змейки, описывающий ее поведение, внешний вид и взаимодействие.
+    Публичный класс Snake
+    Класс для взаимодействия со змейкой
     """
-    
+
     position = (0, 0)
     body_color = (0, 0, 0)
     positions = [(0, 0), (0, 0), (0, 0)]
@@ -76,7 +79,8 @@ class Snake(GameObject):
 
     def __init__(self):
         """
-        Инициализация змейки в центре экрана, настройка начального направления и счета.
+        Инициализирует экземпляр змейки.
+        Устанавливает начальные позиции, направление, флаг роста и счет.
         """
         self.positions = [
             (GRID_WIDTH // 2, GRID_HEIGHT // 2),
@@ -87,10 +91,24 @@ class Snake(GameObject):
         self.grow = False
         self.score = 0
 
+    def get_head_position():
+        """
+        Fake
+        comment
+        """
+        return 0
+
+    def reset():
+        """
+        Fake
+        comment
+        """
+        return 0
+
     def move(self):
         """
-        Двигает змейку в заданном направлении.
-        Если происходит столкновение, возвращает False, иначе True.
+        Перемещает змейку в нужном направлении. Проверяет столкновение с собой.
+        Если столкновение произошло, возвращает False, иначе True.
         """
         current_head = self.positions[0]
         x, y = self.direction
@@ -110,14 +128,16 @@ class Snake(GameObject):
 
     def update_direction(self, direction):
         """
-        Меняет направление движения змейки, если оно не противоположно текущему.
+        Изменяет направление движения змейки.
+        Параметры: direction - направление в виде кортежа (dx, dy)
         """
         if (direction[0] * -1, direction[1] * -1) != self.direction:
             self.direction = direction
 
     def draw(self):
         """
-        Рисует змейку на экране, используя список ее позиций.
+        Данная функция предназначена для
+        отрисовки змейки на экране.
         """
         for pos in self.positions:
             rect = pygame.Rect(pos[0] * GRID_SIZE, pos[1] * GRID_SIZE,
@@ -128,12 +148,17 @@ class Snake(GameObject):
 
 class Apple(GameObject):
     """
-    Класс яблока, описывающий его поведение, позицию и внешний вид.
+    Публичный класс Apple
+    Определяет поведение яблока в игре.
     """
+
+    position = (0, 0)
+    body_color = (0, 0, 0)
 
     def __init__(self):
         """
-        Инициализация яблока со случайной начальной позицией на экране.
+        Инициализирует экземпляр яблока. Устанавливает начальную позицию
+        яблока случайным образом в пределах игрового поля.
         """
         a = randint(0, GRID_WIDTH - 1)
         b = randint(0, GRID_HEIGHT - 1)
@@ -141,7 +166,8 @@ class Apple(GameObject):
 
     def draw(self):
         """
-        Рисует яблоко на экране в его текущей позиции.
+        Данная функция предназначена для
+        отрисовки яблока на экране.
         """
         a = self.position[0] * GRID_SIZE
         b = self.position[1] * GRID_SIZE
@@ -151,7 +177,8 @@ class Apple(GameObject):
 
     def randomize_position(self):
         """
-        Перемещает яблоко в новую случайную позицию на экране.
+        Сбрасывает позицию яблока на новую случайную координату.
+        Устанавливает новую случайную позицию яблока в пределах игрового поля.
         """
         a = randint(0, GRID_WIDTH - 1)
         b = randint(0, GRID_HEIGHT - 1)
@@ -160,7 +187,8 @@ class Apple(GameObject):
 
 def handle_keys(snake):
     """
-    Обрабатывает нажатия клавиш для управления змейкой и изменением скорости.
+    Данная функция предназначена для
+    определения управление в игре.
     """
     global speed
     for event in pygame.event.get():
@@ -192,7 +220,8 @@ def handle_keys(snake):
 
 def game_over_scr(score, high_score):
     """
-    Отображает экран окончания игры, позволяет выйти или перезапустить игру.
+    Данная функция предназначена для
+    определения работы экрана после смерти
     """
     while True:
         scr.fill(BOARD_BACKGROUND_COLOR)
@@ -225,7 +254,8 @@ def game_over_scr(score, high_score):
 
 def main():
     """
-    Главная функция игры, инициирует объекты змейки и яблока и запускает основной цикл игры.
+    Общий класс игры
+    Взаимодействует с остальными классами
     """
     global speed
     speed = INITIAL_SPEED
@@ -262,7 +292,8 @@ def main():
         # Отображение текущего счета и скорости
         score_text = font.render(f'Счет: {snake.score}', True, WHITE)
         scr.blit(score_text, (10, 10))
-        speed_text = font
+        speed_text = font.render(f'Скорость: {speed}', True, WHITE)
+        scr.blit(speed_text, (10, 30))
 
         pygame.display.flip()
         clock.tick(speed)
